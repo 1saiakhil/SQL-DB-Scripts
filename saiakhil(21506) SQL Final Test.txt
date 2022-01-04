@@ -1,0 +1,25 @@
+1.EMPLOYEES WITH SAME SALARY
+QUERY
+select *
+from Worker_Details
+where SALARY IN(
+                  SELECT SALARY
+				  FROM Worker_Details
+				  WHERE WORKER_ID
+				  NOT IN 
+				  (
+				  SELECT
+				  MAX( WORKER_ID)
+				  FROM Worker_Details
+				  GROUP BY SALARY));
+
+
+FOR THE SECOND ONE
+2.SALARY IN EACH DEPARTMENT 
+
+SELECT WORKER_ID, DEPARTMENT, FIRST_NAME, LAST_NAME
+FROM Worker_Details
+WHERE SALARY IN(
+                 SELECT MAX(SALARY)
+				 FROM Worker_Details
+				 GROUP BY DEPARTMENT);
